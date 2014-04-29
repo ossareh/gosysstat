@@ -1,4 +1,4 @@
-gosysstat
+libgosysstat
 =========
 
 Uses

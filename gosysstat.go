@@ -6,8 +6,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/ossareh/gosysstat/core"
-	"github.com/ossareh/gosysstat/processor/cpu"
+	"github.com/ossareh/libgosysstat/core"
+	"github.com/ossareh/libgosysstat/processor/cpu"
 )
 
 const (
