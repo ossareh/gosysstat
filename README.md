@@ -1,10 +1,10 @@
-libgosysstat
+gosysstat
 =========
 
 Uses
 ====
 
-A CLI which reports CPU stats to your console. Uses https://github.com/ossareh/libgosysstat
+Simple CLI for reading stats from the /proc filesystem on Linux. Uses https://github.com/ossareh/libgosysstat
 
 Mental Model
 ============
@@ -24,4 +24,3 @@ Mental Model
      +-----------------+
              |
              \-- fmt.Println(result)
-
