@@ -16,11 +16,15 @@ const (
 	CPU_SINGLE_STAT_FMT = "%s:%d\n"
 )
 
-func prepareCpuValues(values []float64) (user, sys, idle, io float64) {
-	user = (values[0] + values[1]) * 100
-	sys = values[2] * 100
-	idle = values[3] * 100
-	io = values[4] * 100
+func prepareCpuValues(values []uint64) (user, sys, idle, io float64) {
+	var total float64
+	for _, v := range values {
+		total += float64(v)
+	}
+	user = float64(values[0]+values[1]) / total * 100
+	sys = float64(values[2]) / total * 100
+	idle = float64(values[3]) / total * 100
+	io = float64(values[4]) / total * 100
 	return
 }
 
@@ -39,7 +43,9 @@ func formatCpuStat(data []core.Stat) string {
 		case "ctxt":
 			s = fmt.Sprintf(CPU_SINGLE_STAT_FMT, "Context Switches", int(values[0]))
 		case "procs":
+			s = fmt.Sprintf(CPU_SINGLE_STAT_FMT, "Processes", values[0])
 		case "procsr":
+			s = fmt.Sprintf(CPU_SINGLE_STAT_FMT, "Processes Running", values[0])
 		case "procsb":
 		default:
 			user, sys, idle, io := prepareCpuValues(values)
